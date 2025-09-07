@@ -1,0 +1,42 @@
+[
+  {
+    "query": "Điểm tiếng Anh 2 của tôi là bao nhiêu?",
+    "expected": "tiếng anh 2"
+  },
+  {
+    "query": "Tôi đã học xong bao nhiêu tín chỉ rồi?",
+    "expected": ["tổng số tín chỉ", "đã học", "tích lũy"]
+  },
+  {
+    "query": "Điểm GPA toàn khóa hiện tại của tôi là bao nhiêu?",
+    "expected": ["gpa toàn khóa", "điểm trung bình tích lũy"]
+  },
+  {
+    "query": "Tôi còn thiếu bao nhiêu tín chỉ để tốt nghiệp?",
+    "expected": ["thiếu", "chưa đủ", "cần thêm"]
+  },
+  {
+    "query": "Tôi đã học môn Toán rời rạc chưa?",
+    "expected": ["toán rời rạc", "đã học", "đã tích lũy"]
+  },
+  {
+    "query": "GPA học kỳ 1 năm nhất của tôi là bao nhiêu?",
+    "expected": ["học kỳ 1", "gpa", "điểm trung bình"]
+  },
+  {
+    "query": "Tôi đã học bao nhiêu môn rồi?",
+    "expected": ["số môn", "đã học", "môn học"]
+  },
+  {
+    "query": "Điểm môn chuyên đề CNTT?",
+    "expected": ["chuyên đề", "cntt", "điểm"]
+  },
+  {
+    "query": "Tôi có bị học lại môn nào không?",
+    "expected": ["học lại", "rớt", "F"]
+  },
+  {
+    "query": "Xếp loại tốt nghiệp hiện tại của tôi là gì?",
+    "expected": ["xếp loại", "giỏi", "khá", "trung bình"]
+  }
+]
