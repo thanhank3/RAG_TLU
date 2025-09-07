@@ -2,7 +2,8 @@ Hệ thống RAG tra cứu thông tin kết quả học tập.
 
 Cấu trúc hệ thống
 
-<img width="882" height="517" alt="Screenshot 2025-07-17 162730" src="https://github.com/user-attachments/assets/72cd2992-4860-4873-9430-411f12beb824" />
+<img width="791" height="425" alt="image" src="https://github.com/user-attachments/assets/894b8576-4e5a-4088-b020-db40d483c6c0" />
+
 
 
 Các Lệnh tương tác trên discord
