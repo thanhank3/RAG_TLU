@@ -1,3 +1,5 @@
+Hệ thống RAG tra cứu thông tin kết quả học tập.
+
 Cấu trúc hệ thống
 
 <img width="882" height="517" alt="Screenshot 2025-07-17 162730" src="https://github.com/user-attachments/assets/72cd2992-4860-4873-9430-411f12beb824" />
