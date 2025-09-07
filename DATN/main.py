@@ -28,7 +28,8 @@ vectorstore = Chroma(
     persist_directory="D:/DATN/Output3/chroma_db",
 )
 
-# ----------------------- PROMPT -----------------------------
+#  PROMPT
+
 prompt_unified = PromptTemplate.from_template(
     """
     Bạn là trợ lý ảo hỗ trợ tra cứu kết quả học tập. 
@@ -96,7 +97,7 @@ prompt_unified = PromptTemplate.from_template(
     """
 )
 
-# ------------------- RETRIEVER ------------------------------
+#  RETRIEVER
 Sc_KEYWORDS = [
     "điểm", "gpa",
     "học thêm", "học lại", "tkhp",
@@ -112,7 +113,7 @@ def custom_retriever(query: str, student_id: str | None = None):
     """Truy xuất tài liệu phù hợp từ Chroma """
     q_lower = query.lower()
 
-    # ---------- 1.  Truy vấn điểm  ----------
+    # 1.  Truy vấn điểm 
     if student_id and any(k in q_lower for k in Sc_KEYWORDS):
         docs = vectorstore.similarity_search(
             query=query,
@@ -128,7 +129,7 @@ def custom_retriever(query: str, student_id: str | None = None):
         if docs:
             return docs
 
-    # ---------- 2.  Truy vấn thông tin môn học ----------
+    #  2.  Truy vấn thông tin môn học 
     code_match = re.search(r"\b[A-Z]{3}\d{3}\b", query)
     if code_match:
         code = code_match.group(0)
@@ -150,7 +151,7 @@ def custom_retriever(query: str, student_id: str | None = None):
             filter={"loai": {"$eq": "mon_hoc"}},
         )
 
-    # ---------- 3.  Quy chế / điều kiện ----------
+    # 3.  Quy chế / điều kiện
     if any(k in q_lower for k in
            ["quy chế", "điều kiện", "tốt nghiệp", "xếp loại",
             "điều khoản", "quy định", "loại", "gpa là gì", "thuộc loại"]):
@@ -160,7 +161,7 @@ def custom_retriever(query: str, student_id: str | None = None):
             filter={"loai": {"$eq": "quy_che"}},
         )
 
-    # ---------- 4.  Mặc định ----------
+    #  4.  Mặc định
     return vectorstore.similarity_search(query=query, k=50)
 
 
@@ -243,7 +244,7 @@ def get_tong_ket_info(student_id: str):
     return 0, 0, 0
 
 
-# ------------------- CHATBOT INTERFACE ---------------------
+# --- CHATBOT INTERFACE ---
 prev_subject_state = gr.State("")  # lưu tên môn học trước đó
 
 
@@ -331,8 +332,8 @@ def chatbot_interface(query: str, student_id: str, prev_subject: str = "", prev_
 
 def set_student_id(student_id: str):
     if not re.fullmatch(r"\d{10}", student_id):
-        return "❌ MSV phải gồm đúng 10 chữ số.", ""
-    return f"✅ Đã lưu MSV: {student_id}", student_id
+        return "MSV phải gồm đúng 10 chữ số.", ""
+    return f" Đã lưu MSV: {student_id}", student_id
 
 
 def build_ui():
@@ -342,12 +343,12 @@ def build_ui():
         prev_subject_state = gr.State("")
 
         with gr.Row():
-            sid_input = gr.Textbox(label="🔑 MSV (10 chữ số)")
-            save_btn = gr.Button("💾 Lưu MSV")
+            sid_input = gr.Textbox(label=" MSV (10 chữ số)")
+            save_btn = gr.Button(" Lưu MSV")
         sid_status = gr.Textbox(label="Trạng thái", interactive=False)
         save_btn.click(set_student_id, inputs=[sid_input], outputs=[sid_status, sid_state])
 
-        gr.Markdown("### ❓ Đặt câu hỏi")
+        gr.Markdown("###  Đặt câu hỏi")
         query_input = gr.Textbox(label="Câu hỏi", placeholder="Ví dụ: môn Hệ thống thông tin địa lý có mấy tín chỉ?")
         ask_btn = gr.Button("➡️ Gửi")
         answer_box = gr.Textbox(label="💬 Trả lời", lines=12)
@@ -363,3 +364,4 @@ def build_ui():
 
 if __name__ == "__main__":
     build_ui().launch()
+
